@@ -3,7 +3,7 @@ services:
   - docker:dind
 
 build:
-  image: danieldent/docker-builder
+  image: arizz96/docker-builder
   script:
     - docker version
     - docker info
