@@ -1,4 +1,7 @@
 FROM postgres:10.4
+RUN apt-get update -qq && \
+    apt-get install -y iputils-ping && \
+    rm -rf /var/lib/apt/lists/*
 MAINTAINER Alessandro Rizzo
 ENV PG_MAX_WAL_SENDERS 8
 ENV PG_WAL_KEEP_SEGMENTS 8
