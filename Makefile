@@ -26,13 +26,12 @@ build-%: check-current Dockerfile setup-replication.sh docker-entrypoint-patcher
 	mkdir -p build/$*
 	cp Dockerfile setup-replication.sh docker-entrypoint-patcher.sh build/docker-entrypoint.sh build/$*
 	sed -i '' 's/postgres:latest/postgres:$*/' build/$*/Dockerfile
-	docker build --no-cache --pull -t danieldent/docker-postgres-replication-dev:$* build/$*
+	docker build --no-cache --pull -t arizz96/docker-postgres-replication:$* build/$*
 
 push-%: build-%
-	docker push danieldent/docker-postgres-replication-dev:$*
+	docker push arizz96/docker-postgres-replication:$*
 
 push: $(addprefix push-,$(variants)) ## Push current builds to docker registry (use push-VARIANT to push only one of the builds)
 
 help: ## To build a specific variant, use the variant as the first parameter to make
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
