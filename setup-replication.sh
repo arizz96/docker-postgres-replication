@@ -1,4 +1,5 @@
 #!/bin/bash
+
 if [ "x$REPLICATE_FROM" == "x" ]; then
 
 cat >> ${PGDATA}/postgresql.conf <<EOF
