@@ -60,7 +60,7 @@ if [ "$1" = 'postgres' ] && [ "$(id -u)" = '0' ]; then
 		chmod 700 "$POSTGRES_INITDB_WALDIR"
 	fi
 
-	exec gosu postgres "$BASH_SOURCE" "$@"
+	exec "$BASH_SOURCE" "$@"
 fi
 
 if [ "$1" = 'postgres' ]; then
@@ -83,7 +83,7 @@ if [ "$1" = 'postgres' ]; then
             echo "Waiting for master to ping..."
             sleep 1s
         done
-        until gosu postgres pg_basebackup -h ${REPLICATE_FROM} -D ${PGDATA} -U ${POSTGRES_USER} -vP -w
+        until pg_basebackup -h ${REPLICATE_FROM} -D ${PGDATA} -U ${POSTGRES_USER} -vP -w
         do
             echo "Waiting for master to connect..."
             sleep 1s
