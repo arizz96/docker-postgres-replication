@@ -1,7 +1,7 @@
 .PHONY: all clean help build build-% push push-% check-current
 .DEFAULT_GOAL := help
 
-variants := 9.5 9.5-alpine 9.6 9.6-alpine 10 10-alpine
+variants := 9.5 9.5-alpine 9.6 9.6-alpine 10 10-alpine 12 12-alpine
 
 all: push
 
